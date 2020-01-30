@@ -1,0 +1,47 @@
+frndsDict = {}
+getDict = {}
+payDict = {}
+total = 0
+eachAmount = 0
+noOfPersons= int(input("Enter no of friends .."))
+for i in range(noOfPersons):
+
+    frndsDict.update({input("Enter name "): int(input("Enter amount paid "))});
+
+print(frndsDict)
+for i in frndsDict:
+    amount = frndsDict[i]
+    total += amount
+
+print(total)
+
+eachAmount = round(total/len(frndsDict), 2)
+
+print('amount to be paid ', eachAmount)
+
+for i in frndsDict:
+    if frndsDict[i] > eachAmount:
+
+        getDict.update({i: frndsDict[i]-eachAmount})
+    elif frndsDict[i] == 0:
+        continue
+    else:
+        payDict.update({i: eachAmount-frndsDict[i]})
+print(getDict)
+print(payDict)
+
+for i in getDict:
+    for j in payDict:
+        payedAmount = 0
+        if payDict[j] > 0 and getDict[i] > 0:
+            if getDict[i] > payDict[j]:
+                payedAmount= getDict[i] - payDict[j]
+                print(j, "need to pay ", payDict[j], "to ", i)
+                getDict[i] = payedAmount
+                payDict[j] = 0
+
+            else:
+                payedAmount= payDict[j] - getDict[i]
+                print(j, "need to pay ", getDict[i], "to ", i)
+                getDict[i] = 0
+                payDict[j] = payedAmount
